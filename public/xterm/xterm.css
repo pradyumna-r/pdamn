@@ -1,7 +1,3 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 /**
  * Copyright (c) 2014 The xterm.js authors. All rights reserved.
  * Copyright (c) 2012-2013, Christopher Jeffrey (MIT License)
@@ -39,10 +35,6 @@
  *  Default styles for xterm.js
  */
 
-.terminal {
-  color: red;
-}
-
 .xterm {
   cursor: text;
   position: relative;
@@ -60,9 +52,9 @@
   position: absolute;
   top: 0;
   /**
-         * The z-index of the helpers must be higher than the canvases in order for
-         * IMEs to appear on top.
-         */
+   * The z-index of the helpers must be higher than the canvases in order for
+   * IMEs to appear on top.
+   */
   z-index: 5;
 }
 
@@ -86,7 +78,7 @@
 
 .xterm .composition-view {
   /* TODO: Composition position got messed up somewhere */
-  background: #0000;
+  background: #000;
   color: #fff;
   display: none;
   position: absolute;
@@ -170,7 +162,7 @@
 
 .xterm-dim {
   /* Dim should not apply to background, so the opacity of the foreground color is applied
-         * explicitly in the generated class and reset to 1 here */
+   * explicitly in the generated class and reset to 1 here */
   opacity: 1 !important;
 }
 
