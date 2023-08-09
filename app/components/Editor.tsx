@@ -56,6 +56,14 @@ export default function EditorComponent() {
   };
   const handleEditorOnChange: OnChange = (value, event) => {
     console.log("editor changed", value, event, fileName);
+    if (fileName === "script.js") {
+      setJsValue(value!);
+    }
+    if (fileName === "index.html") {
+      setHtmlValue(value!);
+    } else {
+      setCssValue(value!);
+    }
   };
 
   const file = files[fileName];
@@ -98,7 +106,7 @@ export default function EditorComponent() {
         onChange={handleEditorOnChange}
       />
       <div>
-        <Preview />
+        <Preview jsValue={jsValue} htmlValue={htmlValue} cssValue={cssValue} />
       </div>
     </div>
   );

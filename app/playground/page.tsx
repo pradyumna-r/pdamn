@@ -1,5 +1,3 @@
-"use client";
-import { useState } from "react";
 import dynamic from "next/dynamic";
 const Terminal = dynamic(() => import("@/app/components/Terminal"), {
   ssr: false,
