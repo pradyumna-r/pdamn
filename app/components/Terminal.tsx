@@ -6,13 +6,16 @@ import { AttachAddon } from "xterm-addon-attach";
 export default function Terminal() {
   useEffect(() => {
     const ws = new WebSocket("ws://localhost:8080");
-
+    let attachAddon;
     const term = new TerminalComponent({
       cursorBlink: true,
     });
     const fitAddon = new FitAddon();
-    const attachAddon = new AttachAddon(ws);
-    term.loadAddon(attachAddon);
+    ws.onopen = function (event) {
+      let attachAddon = new AttachAddon(ws);
+      term.loadAddon(attachAddon);
+    };
+
     term.loadAddon(fitAddon);
     console.log(attachAddon);
 
