@@ -6,7 +6,8 @@ import { type editor } from "monaco-editor";
 const Preview = dynamic(() => import("@/app/components/Preview"), {
   ssr: false,
 });
-
+import { Panel, PanelGroup, PanelResizeHandle } from "react-resizable-panels";
+import { Button } from "./ui/Button";
 interface File {
   name: string;
   language: string;
@@ -50,6 +51,9 @@ export default function EditorComponent() {
       alert(editorRef.current.getValue());
     }
   };
+  const onLayout = (sizes: number[]) => {
+    document.cookie = `react-resizable-panels:layout=${JSON.stringify(sizes)}`;
+  };
 
   const handleEditorDidMount: OnMount = (editor, monaco) => {
     editorRef.current = editor;
@@ -61,7 +65,8 @@ export default function EditorComponent() {
     }
     if (fileName === "index.html") {
       setHtmlValue(value!);
-    } else {
+    }
+    if (fileName === "style.css") {
       setCssValue(value!);
     }
   };
@@ -70,44 +75,103 @@ export default function EditorComponent() {
 
   return (
     <div>
-      <button
-        disabled={fileName === "script.js"}
-        onClick={() => setFileName("script.js")}
-      >
-        script.js
-      </button>
-      <button
-        disabled={fileName === "style.css"}
-        onClick={() => setFileName("style.css")}
-      >
-        style.css
-      </button>
-      <button
-        disabled={fileName === "index.html"}
-        onClick={() => setFileName("index.html")}
-      >
-        index.html
-      </button>
-      <button onClick={showValue}>Show value</button>
-      <Editor
-        height="80vh"
-        theme="vs-dark"
-        path={file.name}
-        defaultLanguage={file.language}
-        defaultValue={file.value}
-        onMount={handleEditorDidMount}
-        // value={
-        //   file.name === "index.js"
-        //     ?
-        //     : file.name === "index.html"
-        //     ? htmlValue
-        //     : cssValue
-        // }
-        onChange={handleEditorOnChange}
-      />
-      <div>
-        <Preview jsValue={jsValue} htmlValue={htmlValue} cssValue={cssValue} />
-      </div>
+      <PanelGroup direction="horizontal">
+        <Panel defaultSize={40}>
+          <div className="mt-4 ">
+            {/* <Button>Button</Button> */}
+            <div className="flex mb-3 w-full">
+              <button
+                disabled={fileName === "script.js"}
+                onClick={() => setFileName("script.js")}
+                className="mr-1 bg-blue-500 flex-grow-1 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
+              >
+                script.js
+              </button>
+              <button
+                disabled={fileName === "style.css"}
+                onClick={() => setFileName("style.css")}
+                className="mr-1 bg-blue-500 flex-grow-1 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
+              >
+                style.css
+              </button>
+              <button
+                disabled={fileName === "index.html"}
+                onClick={() => setFileName("index.html")}
+                className="bg-blue-500 flex-grow-1 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
+              >
+                index.html
+              </button>
+            </div>
+            {/* <button onClick={showValue}>Show value</button> */}
+            <div>
+              <Editor
+                height="80vh"
+                theme="vs-dark"
+                path={file.name}
+                defaultLanguage={file.language}
+                defaultValue={file.value}
+                onMount={handleEditorDidMount}
+                // value={
+                //   file.name === "index.js"
+                //     ?
+                //     : file.name === "index.html"
+                //     ? htmlValue
+                //     : cssValue
+                // }
+                onChange={handleEditorOnChange}
+              />
+            </div>
+          </div>
+        </Panel>
+        <PanelResizeHandle className="w-2 bg-blue-800" />
+        <Panel defaultSize={60}>
+          <Preview
+            jsValue={jsValue}
+            htmlValue={htmlValue}
+            cssValue={cssValue}
+          />
+        </Panel>
+      </PanelGroup>
     </div>
+    // <div>
+    //   <button
+    //     disabled={fileName === "script.js"}
+    //     onClick={() => setFileName("script.js")}
+    //   >
+    //     script.js
+    //   </button>
+    //   <button
+    //     disabled={fileName === "style.css"}
+    //     onClick={() => setFileName("style.css")}
+    //   >
+    //     style.css
+    //   </button>
+    //   <button
+    //     disabled={fileName === "index.html"}
+    //     onClick={() => setFileName("index.html")}
+    //   >
+    //     index.html
+    //   </button>
+    //   <button onClick={showValue}>Show value</button>
+    //   <Editor
+    //     height="80vh"
+    //     theme="vs-dark"
+    //     path={file.name}
+    //     defaultLanguage={file.language}
+    //     defaultValue={file.value}
+    //     onMount={handleEditorDidMount}
+    //     // value={
+    //     //   file.name === "index.js"
+    //     //     ?
+    //     //     : file.name === "index.html"
+    //     //     ? htmlValue
+    //     //     : cssValue
+    //     // }
+    //     onChange={handleEditorOnChange}
+    //   />
+    //   <div>
+    //     <Preview jsValue={jsValue} htmlValue={htmlValue} cssValue={cssValue} />
+    //   </div>
+    // </div>
   );
 }

@@ -22,19 +22,25 @@ export default function Terminal() {
     const terminalElement = document.getElementById("terminal");
     if (terminalElement) {
       console.log(term);
+      console.log("opening");
       term.open(terminalElement);
+      fitAddon.fit();
       term.write("bash-3.2$ ");
       ws.onmessage = function (message) {
         console.log(message);
       };
       // term.loadAddon(attachAddon);
       // term.loadAddon(fitAddon);
-      fitAddon.fit();
+
       // term.onData((e) => {
       //   console.log(e);
       //   ws.send("ls\r");
       // });
     }
-  });
-  return <div id="terminal">terminal</div>;
+    return () => {
+      term.dispose();
+      ws.close();
+    };
+  }, []);
+  return <div id="terminal"></div>;
 }
