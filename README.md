@@ -2,7 +2,11 @@ An Attempt to build and maintain an online code eidtor.
 
 ## Roadmap
 
-- [ ] Feature 1
-- [ ] Feature 2
-- [ ] Feature 3
-    - [ ] Nested Feature
+- [X] A code Editor on the frontend
+- [X] A Terminal on the frontend
+- [X] Terminal connected to an actual terminal on the backend through websockets
+- [X] Multiple file support(currently only three)
+- [X] Preview for editor output
+- [X] Multiple resizable windows
+- [ ] Dockerize the express backend so that more than on user can use this application at once
+- [ ] Persist and code and other files accross page refreshes
