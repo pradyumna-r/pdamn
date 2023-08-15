@@ -19,4 +19,5 @@ Next.js,React.js,Express.js,Typescript,Javascript,TailwindCSS,ShadcnUi,WebSocket
 
 ### Deployment
 
-Fronted:Vercel   Backend:render
+Fronted:Vercel  
+Backend:render
