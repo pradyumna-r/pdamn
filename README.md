@@ -8,7 +8,7 @@ An Attempt to build and maintain an online code eidtor.
 - [X] Multiple file support(currently only three)
 - [X] Preview for editor output
 - [X] Multiple resizable windows
-- [ ] Dockerize the express backend so that more than on user can use this application at once
+- [ ] Dockerize the express backend so that multiple users can use this application at once
 - [ ] Persist user code and other files accross page refreshes
 - [ ] Allow users to create multiple files and folders
 - [ ] Auth
