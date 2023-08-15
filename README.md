@@ -15,6 +15,8 @@ An Attempt to build and maintain an online code eidtor.
 
 ### Built With
 
-* [![Next][Next.js]][Next-url]
-* [![React][React.js]][React-url]
+Next.js,React.js,Express.js,Typescript,Javascript,TailwindCSS,ShadcnUi,WebSockets
 
+### Deployment
+
+Fronted:Vercel   Backend:render
