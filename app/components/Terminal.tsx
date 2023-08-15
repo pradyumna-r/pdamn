@@ -5,7 +5,8 @@ import { FitAddon } from "xterm-addon-fit";
 import { AttachAddon } from "xterm-addon-attach";
 export default function Terminal() {
   useEffect(() => {
-    const ws = new WebSocket("ws://localhost:8080");
+    // const ws = new WebSocket("ws://localhost:8080");
+    const ws = new WebSocket(process.env.NEXT_PUBLIC_WS_URL!);
     let attachAddon;
     const term = new TerminalComponent({
       cursorBlink: true,
@@ -25,7 +26,9 @@ export default function Terminal() {
       console.log("opening");
       term.open(terminalElement);
       fitAddon.fit();
-      term.write("bash-3.2$ ");
+      term.write(
+        "render@srv-cjdj23ivvtos73bmkckg-hibernate-88f5c5cb8-x95t4:~$ "
+      );
       ws.onmessage = function (message) {
         console.log(message);
       };
