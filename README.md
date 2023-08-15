@@ -9,6 +9,6 @@ An Attempt to build and maintain an online code eidtor.
 - [X] Preview for editor output
 - [X] Multiple resizable windows
 - [ ] Dockerize the express backend so that more than on user can use this application at once
-- [ ] Persist and code and other files accross page refreshes
+- [ ] Persist user code and other files accross page refreshes
 - [ ] Allow users to create multiple files and folders
 - [ ] Auth
